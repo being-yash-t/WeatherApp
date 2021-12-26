@@ -24,8 +24,9 @@ class ThemeConfig {
 
     return ThemeData(
       brightness: brightness,
-      buttonColor: buttonBackground,
+      scaffoldBackgroundColor: buttonBackground,
       canvasColor: background,
+      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
       cardColor: background,
       dividerColor: divider,
       dividerTheme: DividerThemeData(
@@ -40,19 +41,11 @@ class ThemeConfig {
       ),
       backgroundColor: background,
       primaryColor: accentColor,
-      accentColor: accentColor,
-      textSelectionColor: accentColor,
-      textSelectionHandleColor: accentColor,
-      cursorColor: accentColor,
       toggleableActiveColor: accentColor,
       appBarTheme: AppBarTheme(
-        brightness: brightness,
         color: cardBackground,
-        textTheme: TextTheme(
-          bodyText1: baseTextTheme.bodyText1?.copyWith(
-            color: secondaryText,
-            fontSize: 18,
-          ),
+        titleTextStyle: baseTextTheme.headline6?.copyWith(
+          color: secondaryText
         ),
         iconTheme: IconThemeData(
           color: secondaryText,
@@ -199,6 +192,8 @@ class ThemeConfig {
       );
 
   static ThemeData myLightTheme = ThemeData(
+    brightness: Brightness.dark,
+    androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
     scaffoldBackgroundColor: ColorConstants.lightScaffoldBackgroundColor,
     textTheme: TextTheme(
         headline1:

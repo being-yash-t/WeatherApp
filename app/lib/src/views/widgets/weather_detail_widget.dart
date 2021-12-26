@@ -16,7 +16,9 @@ class WeatherDetailsWidget extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 2.5, crossAxisCount: 2),
+        childAspectRatio: 2.5,
+        crossAxisCount: 2,
+      ),
       children: [
         HeadingDetailWidget(
             title: "Humidity", value: '${curWeather.humidity}%'),

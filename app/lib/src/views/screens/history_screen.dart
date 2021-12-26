@@ -36,7 +36,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
               final historyWeather = state.hisWeather;
               return SafeArea(
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       Container(
@@ -50,7 +49,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       ),
                       ListView.builder(
                           shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
                           itemCount: historyWeather.length,
                           itemBuilder: (context, index) {
                             return HoulyWeatherOfDayWidget(

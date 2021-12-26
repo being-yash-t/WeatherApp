@@ -54,78 +54,80 @@ class _HomeScreenState extends State<HomeScreen> {
             }
             if (state is HomeSuccess) {
               final weather = state.weatherData;
-              return SafeArea(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: _size.width,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: -_size.width * 0.23,
-                              right: -_size.width * 0.35,
-                              child: Image.asset(
-                                ImageAssets.getAsset(
-                                    weather.current.weather.first.icon),
-                                height: _size.height * 0.45,
-                              ),
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: _size.width,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: -_size.width * 0.23,
+                            right: -_size.width * 0.35,
+                            child: Image.asset(
+                              ImageAssets.getAsset(
+                                  weather.current.weather.first.icon),
+                              height: _size.height * 0.45,
                             ),
-                            Container(
-                              width: _size.width * 0.5,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: _size.width * 0.08,
-                                  vertical: _size.height * 0.07),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    state.place,
-                                    style: Styles.titleTextStyle(fontSize: 22),
+                          ),
+                          Container(
+                            width: _size.width * 0.5,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: _size.width * 0.08,
+                                vertical: _size.height * 0.07),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  state.place,
+                                  style: Styles.titleTextStyle(fontSize: 22),
+                                ),
+                                spacer(height: 8),
+                                Text(
+                                  '${weather.current.temp}°',
+                                  style: Styles.titleTextStyle(fontSize: 64),
+                                ),
+                                spacer(),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: ColorConstants.lightBackgroundColor,
+                                    borderRadius: BorderRadius.circular(25),
                                   ),
-                                  spacer(height: 8),
-                                  Text(
-                                    '${weather.current.temp}°',
-                                    style: Styles.titleTextStyle(fontSize: 64),
+                                  child: Text(
+                                    weather.current.weather.first.main,
+                                    style: Styles.titleTextStyle(fontSize: 16),
                                   ),
-                                  spacer(),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 8),
-                                    decoration: BoxDecoration(
-                                      color:
-                                          ColorConstants.lightBackgroundColor,
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    child: Text(
-                                      weather.current.weather.first.main,
-                                      style:
-                                          Styles.titleTextStyle(fontSize: 16),
-                                    ),
-                                  ),
-                                  spacer(height: _size.height * 0.03)
-                                ],
-                              ),
+                                ),
+                                spacer(height: _size.height * 0.03)
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      WeatherDetailsWidget(curWeather: weather.current),
-                      spacer(),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        alignment: Alignment.topLeft,
-                        child: Text("24 Hours",
-                            style: Styles.subTitleTextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500)),
-                      ),
-                      spacer(height: 8),
-                      HourlyWeatherWidget(hourWeather: weather.hourly!),
-                      spacer(height: 8),
-                      DailyWeatherWidget(dailyWeather: weather.daily!)
-                    ],
-                  ),
+                    ),
+                    WeatherDetailsWidget(curWeather: weather.current),
+                    spacer(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.topLeft,
+                      child: Text("24 Hours",
+                          style: Styles.subTitleTextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                    ),
+                    spacer(height: 8),
+                    HourlyWeatherWidget(hourWeather: weather.hourly!),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      alignment: Alignment.topLeft,
+                      child: Text("Coming week",
+                          style: Styles.subTitleTextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                    ),
+                    spacer(height: 8),
+                    DailyWeatherWidget(dailyWeather: weather.daily!)
+                  ],
                 ),
               );
             }

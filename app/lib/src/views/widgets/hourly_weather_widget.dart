@@ -19,12 +19,11 @@ class HourlyWeatherWidget extends StatelessWidget {
       child: ListView.builder(
           itemCount: hourWeather.length,
           shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            if (index == 0) {
-              return const SizedBox();
-            }
+            // if (index == 0) {
+            //   return const SizedBox();
+            // }
             return Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               child: Column(

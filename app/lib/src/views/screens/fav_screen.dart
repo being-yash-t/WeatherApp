@@ -42,10 +42,12 @@ class FavScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            key: const ValueKey('refresh'),
+              key: const ValueKey('refresh'),
               onPressed: () {
-                BlocProvider.of<CityWeatherBloc>(context)
-                    .add(SearchCityWeather(_searchController.text));
+                if (_searchController.text.trim().isNotEmpty) {
+                  BlocProvider.of<CityWeatherBloc>(context)
+                      .add(SearchCityWeather(_searchController.text));
+                }
               },
               icon: Icon(
                 Icons.refresh,
@@ -90,7 +92,6 @@ class FavScreen extends StatelessWidget {
             if (state is CityWeatherSuccess) {
               return SafeArea(
                 child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
                   child: SizedBox(
                     width: _size.width,
                     child: Column(
@@ -135,7 +136,9 @@ class FavScreen extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: 2.5, crossAxisCount: 2),
+                            childAspectRatio: 2.5,
+                            crossAxisCount: 2,
+                          ),
                           children: [
                             HeadingDetailWidget(
                                 title: "Humidity",
@@ -170,10 +173,9 @@ class FavScreen extends StatelessWidget {
                 ),
               );
             }
-            if( state is CityWeatherFailed){
+            if (state is CityWeatherFailed) {
               return const SomethingWentWrong();
-            }
-            else {
+            } else {
               return const SizedBox();
             }
           },
